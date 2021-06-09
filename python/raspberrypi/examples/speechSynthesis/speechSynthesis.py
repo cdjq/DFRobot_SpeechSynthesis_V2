@@ -3,7 +3,7 @@
 """ 
   @file speechSynthesis.py
   @brief speech synthesis
-  @n note: it takes time to stable alcohol concentration, about 1 minutes.
+  @n note: it takes time to stable ss concentration, about 1 minutes.
   @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   @licence     The MIT License (MIT)
  * @author [fengli](li.feng@dfrobot.com)
@@ -22,15 +22,14 @@ if version_info.major == 2 and version_info.minor == 7:
 COLLECT_NUMBER   = 1               # collect number, the collection range is 1-100
 I2C_MODE         = 0x01            # default use I2C1 
 
-alcohol = DFRobot_SpeechSynthesis_I2C (I2C_MODE ,I2C_ADDR)
-#alcohol = DFRobot_SpeechSynthesis_UART(115200)
-alcohol.setVoice(9)#Set volume(0-9)
-alcohol.setSpeed(5)#Set playback speed (0-9)
-alcohol.setSoundType(FEMEAL)#Set voice type/FEMEAL/MEAL/DONALDDUCK
-alcohol.setTone(5)#Set tone(0-9)
-alcohol.setEnglishPron(WORD)#Set word synthesis mode /WORD/ALPHABET
+ss = DFRobot_SpeechSynthesis_I2C (I2C_MODE ,I2C_ADDR)
+#ss = DFRobot_SpeechSynthesis_UART(115200)
+ss.setVoice(2)#Set volume(0-9)
+ss.setSpeed(5)#Set playback speed (0-9)
+ss.setTone(5)#Set tone(0-9)
+ss.setEnglishPron(WORD)#Set word synthesis mode /WORD/ALPHABET
 while True:
-  alcohol.speak("i have a book")
-  alcohol.speak("She sells seashells by the seashore")
-  alcohol.speak("Hello world")
-  time.sleep(1)
+  ss.speak("i have a book")
+  ss.speak("She sells seashells")
+  ss.speak("Hello world")
+  time.sleep(5)

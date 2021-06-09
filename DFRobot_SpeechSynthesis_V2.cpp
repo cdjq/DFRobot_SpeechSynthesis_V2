@@ -1,6 +1,6 @@
-#include "DFRobot_SpeechSynthesis.h"
+#include "DFRobot_SpeechSynthesis_V2.h"
 /*!
-   @file DFRobot_SpeechSynthesis.h
+   @file DFRobot_SpeechSynthesis_V2.cpp
    @brief Implementation of DFRobot_SpeechSynthesis class
    @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
    @licence     The MIT License (MIT)
@@ -8,7 +8,7 @@
    @version  V1.0
    @date  2020-08-17
    @get from https://www.dfrobot.com
-   @https://github.com/DFRobot/DFRobot_SpeechSynthesis
+   @https://github.com/DFRobot/DFRobot_SpeechSynthesis_V2
 */
 
 DFRobot_SpeechSynthesis::DFRobot_SpeechSynthesis(){
@@ -38,25 +38,6 @@ void DFRobot_SpeechSynthesis::setTone(uint8_t tone){
   DBG(str);
 }
 
-void DFRobot_SpeechSynthesis::setSoundType(eSoundType_t type)
-{
-  String str;
-  if(type == FEMALE1){
-     str="[m3]";
-  }else if(type == MALE1){
-     str="[m51]";
-  }else if(type ==MALE2){
-     str="[m52]";
-  }else if(type == FEMALE2){
-     str="[m53]";
-  }else if(type == DONALDDUCK){
-     str="[m54]";
-  }else if(type == FEMALE3){
-     str="[m55]";
-  }
-  speak(str);
-  DBG(str);
-}
 void DFRobot_SpeechSynthesis::setEnglishPron(eENpron_t pron)
 {
   String str;

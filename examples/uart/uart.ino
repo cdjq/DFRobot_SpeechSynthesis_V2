@@ -7,9 +7,9 @@
  * @version  V1.0
  * @date  2020-11-6
  * @get from https://www.dfrobot.com
- * @url https://github.com/DFRobot/DFRobot_SpeechSynthesis
+ * @url https://github.com/DFRobot/DFRobot_SpeechSynthesis_V2
  */
-#include "DFRobot_SpeechSynthesis.h"
+#include "DFRobot_SpeechSynthesis_V2.h"
 #include <SoftwareSerial.h>
 SoftwareSerial ssSerial1(2, 3);  //RX, TX
 DFRobot_SpeechSynthesis_UART ss;

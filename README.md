@@ -1,4 +1,4 @@
-# DFRobot_SpeechSynthesis
+# DFRobot_SpeechSynthesis_V2
 
 Would you like to add voice to your projects? Connect up this Speech Synthesis module, add few couples of lines of code, then here goes, your project starts speaking. Both Chinese and English are "so easy" for this speech synthesis module. It also can broadcast the current time and environment data. Combining with a speech recognition module, you can easily have conversations with your projects! The module uses I2C and UART two communication modes, gravity interface, and is compatible with most main-controllers on the market. Besides, the module already comes with a speaker, so you don't need to buy one.
    
@@ -89,7 +89,7 @@ micro:bit        |      √       |              |             |
 
 ## History
 
-- Data 2020-11-6
+- Data 2021-6-8
 - Version V1.0
 
 

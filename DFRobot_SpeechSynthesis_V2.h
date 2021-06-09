@@ -1,5 +1,5 @@
 /*!
-   @file DFRobot_SpeechSynthesis.h
+   @file DFRobot_SpeechSynthesis_V2.h
    @brief Basic structure of DFRobot_SpeechSynthesis class
    @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
    @licence     The MIT License (MIT)
@@ -7,11 +7,11 @@
    @version  V1.0
    @date  2020-08-17
    @get from https://www.dfrobot.com
-   @https://github.com/DFRobot/DFRobot_SpeechSynthesis
+   @https://github.com/DFRobot/DFRobot_SpeechSynthesis_V2
 */
 
-#ifndef DFROBOT_SPEECHSYNTHESIS_H
-#define DFROBOT_SPEECHSYNTHESIS_H
+#ifndef DFROBOT_SPEECHSYNTHESIS_V2_H
+#define DFROBOT_SPEECHSYNTHESIS_V2_H
 #if ARDUINO >= 100
 #include "Arduino.h"
 #else
@@ -111,18 +111,6 @@ public:
   } eNamePron_t;
   
   /**
-    Select sound type 
-  */
-  typedef enum{
-    FEMALE1,/**<Female 1, recommended>*/
-    MALE1,/**<Male 1, recommended>*/
-    MALE2,/**<Male 2>*/
-    FEMALE2,/**<FEMALE 2>*/
-    DONALDDUCK,/**<Donald Duck>*/
-    FEMALE3,/**<Female 3>*/
-  } eSoundType_t;
-
-  /**
     How to read English 
   */
   typedef enum{
@@ -182,12 +170,6 @@ public:
      @param speed Speed value (0-9)
   */
   void setSpeed(uint8_t speed);
-
-  /**
-     @brief Set sound type 
-     @param type(MALE:Male, FEMALE:Female, DONALDDUCK: Donaldduck)
-  */
-  void setSoundType(eSoundType_t type);
 
   /**
      @brief Set the tone 
