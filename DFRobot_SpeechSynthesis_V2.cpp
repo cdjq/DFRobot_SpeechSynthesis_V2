@@ -155,7 +155,9 @@ void DFRobot_SpeechSynthesis::speak(String word){
 void DFRobot_SpeechSynthesis::wait(){
 	
 while(readACK()!=0x41)//等待语音合成完成
-  {}
+  {
+    //if(readACK() == 0) break;
+  }
   
 
 while(1)//等待语音播放完成
@@ -163,7 +165,6 @@ while(1)//等待语音播放完成
    delay(20);
    uint8_t check[4]={0xFD,0x00,0x01,0x21};
    sendCommand(check,4);
-   delay(20);
    if(readACK() == 0x4f) break;
   } 
   /*
@@ -177,7 +178,8 @@ readACK();
 }
 
 void DFRobot_SpeechSynthesis::speak(const __FlashStringHelper *data) {
-  uint16_t _len;
+  uint16_t _len = 0;
+
   uint8_t * _data = (uint8_t *)data;
   while(pgm_read_byte(_data+_len) !=0){
     _len++;
@@ -304,7 +306,6 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *head,uint8_t *data,uin
      } else {
         lenTemp = length;
     }
-
      _pWire->beginTransmission(_deviceAddr);
      for(uint8_t i =0;i<lenTemp;i++){
       _pWire->write(data[i]);
@@ -343,13 +344,13 @@ uint8_t DFRobot_SpeechSynthesis_I2C::sendCommand(uint8_t *data,uint8_t length)
   _pWire->beginTransmission(_deviceAddr);
   for(uint8_t i =0;i<length;i++){
      _pWire->write(data[i]);
-     delayMicroseconds(150);
+     //delayMicroseconds(150);
   }
   if( _pWire->endTransmission() != 0 ) {
       DBG("ERR_DATA_BUS");
       return ERR_DATA_BUS;
   }
-
+//delayMicroseconds(50);
 
   return ERR_OK;
 }
@@ -357,10 +358,12 @@ uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
 
   uint8_t data = 0;
    _pWire->requestFrom(_deviceAddr, 1);
-   delay(10);
+   delay(1);
   if(_pWire->available()) {
      data = _pWire->read();
     }
+	delay(200);
+	//Serial.println(data,HEX);
    return data;
 }
 
