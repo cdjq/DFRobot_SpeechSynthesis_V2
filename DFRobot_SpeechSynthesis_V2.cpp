@@ -159,7 +159,8 @@ while(readACK()!=0x41)//等待语音合成完成
     //if(readACK() == 0) break;
   }
   
-
+  DBG("NEXT--------------------------------0X41")
+  delay(300);
 while(1)//等待语音播放完成
   {
    //delay(20);
@@ -188,6 +189,7 @@ void DFRobot_SpeechSynthesis::speak(const __FlashStringHelper *data) {
   }
   uint8_t sendData[5] = {0xfd,(_len + 2) >> 8,(_len + 2) & 0xff,0x01,0x04};
   sendCommand(sendData,5);
+  DBG("START");
   for(uint16_t i = 0 ;i< _len;i++){
       uint8_t utf8 = pgm_read_byte(_data + i);
       sendCommand(&utf8,1);
@@ -364,7 +366,7 @@ uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
   if(_pWire->available()) {
      data = _pWire->read();
     }
-	
+	DBG(data,HEX);
 	//Serial.println(data,HEX);
    return data;
 }
