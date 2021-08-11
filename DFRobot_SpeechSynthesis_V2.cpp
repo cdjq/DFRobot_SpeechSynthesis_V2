@@ -162,10 +162,12 @@ while(readACK()!=0x41)//等待语音合成完成
 
 while(1)//等待语音播放完成
   {
-   delay(20);
+   //delay(20);
    uint8_t check[4]={0xFD,0x00,0x01,0x21};
    sendCommand(check,4);
+   
    if(readACK() == 0x4f) break;
+   delay(20);
   } 
   /*
 readACK();
@@ -358,11 +360,11 @@ uint8_t DFRobot_SpeechSynthesis_I2C::readACK(){
 
   uint8_t data = 0;
    _pWire->requestFrom(_deviceAddr, 1);
-   delay(1);
+   //delay(1);
   if(_pWire->available()) {
      data = _pWire->read();
     }
-	delay(200);
+	
 	//Serial.println(data,HEX);
    return data;
 }
@@ -425,12 +427,13 @@ uint8_t DFRobot_SpeechSynthesis_UART::sendCommand(uint8_t *data,uint8_t length)
 uint8_t DFRobot_SpeechSynthesis_UART::readACK(){
 
   uint8_t data = 0;
-  delay(10);
+  
   //DBG(data,HEX);
   if(_s->available()) {
      data = _s->read();
      DBG(data,HEX);
   }
+  //delay(30);
   DBG(data,HEX);
   return data;
 
