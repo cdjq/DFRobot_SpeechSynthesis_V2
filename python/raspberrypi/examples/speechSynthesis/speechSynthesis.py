@@ -19,15 +19,15 @@ from sys import version_info
 if version_info.major == 2 and version_info.minor == 7:
    reload(sys)  
    sys.setdefaultencoding('gbk') 
-COLLECT_NUMBER   = 1               # collect number, the collection range is 1-100
+I2C_ADDR         = 0x40               # collect number, the collection range is 1-100
 I2C_MODE         = 0x01            # default use I2C1 
 
-ss = DFRobot_SpeechSynthesis_I2C (I2C_MODE ,I2C_ADDR)
-#ss = DFRobot_SpeechSynthesis_UART(115200)
-ss.setVoice(2)#Set volume(0-9)
-ss.setSpeed(5)#Set playback speed (0-9)
-ss.setTone(5)#Set tone(0-9)
-ss.setEnglishPron(WORD)#Set word synthesis mode /WORD/ALPHABET
+#ss = DFRobot_SpeechSynthesis_I2C (I2C_MODE ,I2C_ADDR)
+ss = DFRobot_SpeechSynthesis_UART(115200)
+#ss.setVoice(2)#Set volume(0-9)
+#ss.setSpeed(5)#Set playback speed (0-9)
+#ss.setTone(5)#Set tone(0-9)
+#ss.setEnglishPron(WORD)#Set word synthesis mode /WORD/ALPHABET
 while True:
   ss.speak("i have a book")
   ss.speak("She sells seashells")

@@ -103,13 +103,15 @@ class DFRobot_SpeechSynthesis(object):
         if(result == 0x41):
           break
       #time.sleep(1)
+      time.sleep(0.3)
       while 1:
-        time.sleep(0.02)
+        
         self.write_cmd(check)
         time.sleep(0.01)
         result =self.read_ack(1)
         if(result == 0x4f):
           break
+        time.sleep(0.02)
   '''
     @brief Set voice volume 
     @param voc, Volume value(0-9)
