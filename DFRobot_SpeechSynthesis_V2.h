@@ -26,7 +26,7 @@
 #define DBG(...)
 #endif
 
-#define I2C_ADDR               0x1a  //i2c address
+#define I2C_ADDR               0x40  //i2c address
 #define INQUIRYSTATUS          0x21
 #define ENTERSAVEELETRI        0x88
 #define WAKEUP                 0xFF
@@ -237,25 +237,6 @@ public:
   void setDigitalPron(eDigitalPron_t pron);
   
   /**
-     @brief Stop synthesis 
-  */
-  void stopSynthesis();
-  /**
-     @brief Synthesis pause
-  */
-  void pauseSynthesis();
-
-  /**
-     @brief Recover synthesis 
-  */
-  void recoverSynthesis();
-  
-  /**
-     @brief Wait for speech synthesis to complete 
-  */
-  void wait();
-  
-  /**
      @brief Synthesize English char string
   */
   void speakElish(String word);
@@ -273,6 +254,24 @@ private:
   eState_t lastState = NONE;
   bool lanChange = false;
   bool _isFlash = false;
+  /**
+     @brief Stop synthesis 
+  */
+  void stopSynthesis();
+  /**
+     @brief Synthesis pause
+  */
+  void pauseSynthesis();
+
+  /**
+     @brief Recover synthesis 
+  */
+  void recoverSynthesis();
+  
+  /**
+     @brief Wait for speech synthesis to complete 
+  */
+  void wait();
   uint16_t getWordLen();
   virtual uint8_t readACK()= 0;
   void sendPack(uint8_t cmd,uint8_t* data =NULL,uint16_t len = 0);
