@@ -157,6 +157,9 @@ void DFRobot_SpeechSynthesis::wait(){
 while(readACK()!=0x41)//等待语音合成完成
   {
     //if(readACK() == 0) break;
+	#if (defined ESP8266)
+	yield();
+   #endif
   }
   
   DBG("NEXT--------------------------------0X41")
@@ -166,7 +169,9 @@ while(1)//等待语音播放完成
    //delay(20);
    uint8_t check[4]={0xFD,0x00,0x01,0x21};
    sendCommand(check,4);
-   
+	#if (defined ESP8266)
+	yield();
+   #endif
    if(readACK() == 0x4f) break;
    delay(20);
   } 
