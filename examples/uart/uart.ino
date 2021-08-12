@@ -10,26 +10,36 @@
  * @url https://github.com/DFRobot/DFRobot_SpeechSynthesis_V2
  */
 #include "DFRobot_SpeechSynthesis_V2.h"
-#include <SoftwareSerial.h>
-SoftwareSerial ssSerial1(2, 3);  //RX, TX
 DFRobot_SpeechSynthesis_UART ss;
+/*Use software serial when using UNO or NANO*/
+#if ((defined ARDUINO_AVR_UNO) || (defined ARDUINO_AVR_NANO))
+    #include <SoftwareSerial.h>
+    SoftwareSerial Serial1(2, 3);  //RX, TX
+    #define FPSerial Serial1
+    
+#else
+    #define FPSerial Serial1
+#endif
 
-void setup() {
-  ssSerial1.begin(115200);
-  //Init speech synthesis sensor
-  ss.begin(ssSerial1);
+void setup(){
+  //使用firebeetle-ESP32 时需要见rx,tx映射到D2,D3
+  #if (defined ESP32)
+     Serial1.begin(115200, SERIAL_8N1, /*rx =*/D2, /*tx =*/D3);
+  #else
+  Serial1.begin(115200);
+  #endif
+  ss.begin(Serial1);
   
   //Set voice volume to 5
   //ss.setVolume(5);
   //Set playback speed to 5
   //ss.setSpeed(5);
-  //Set speaker to female 
-  //ss.setSoundType(ss.FEMALE1);
   //Set tone to 5
   //ss.setTone(5);
   //For English, speak word 
   //ss.setEnglishPron(ss.WORD);
 }
+
 
 void loop() {
   ss.speak(F("She sells seashells by the seashore"));
