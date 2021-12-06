@@ -71,10 +71,10 @@ $> python get_alcohol_data.py
 ```
 ## History
 
-- Data 2021-8-12
+- Data 2020-11-6
 - Version V1.0
 
 
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2021.8.12 (Welcome to our [website](https://www.dfrobot.com/))
+Written by fengli(li.feng@dfrobot.com), 2020.11.6 (Welcome to our [website](https://www.dfrobot.com/))

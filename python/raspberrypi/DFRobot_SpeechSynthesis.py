@@ -67,13 +67,11 @@ class DFRobot_SpeechSynthesis(object):
     if bus != 0:
       self.i2cbus = smbus.SMBus(bus)
       self.__uart_i2c = I2C_MODE;
-      self.write_cmd([0xaa])
     else:
       self.ser = serial.Serial("/dev/ttyAMA0" ,baudrate=Baud,stopbits=1, timeout=0.5)
       self.__uart_i2c = UART_MODE;
       if self.ser.isOpen == False:
         self.ser.open()
-        
 
   def speak(self ,string):
       str = string.encode('gb2312')
@@ -90,7 +88,6 @@ class DFRobot_SpeechSynthesis(object):
       self.read_ack(1)
       self.read_ack(1)
       self.write_cmd(data1)
-      #time.sleep(5)
       self.wait()
       return
   '''
@@ -117,27 +114,22 @@ class DFRobot_SpeechSynthesis(object):
     @param voc, Volume value(0-9)
   '''
   def setVoice(self, voc):
-      list1 = [0xfd,0x00,0x06,0x01,0x04,91,118,49,93]
+      list1 = [0xfd,0x00,0x06,0x01,0x00,91,118,49,93]
       if(voc > 9 or voc < 0):
          return
       list1[7]= voc + 48
-      self.read_ack(1)
-      self.read_ack(1)
       self.write_cmd(list1)
-      self.wait()
   '''
     @brief Set playback speed 
     @param speed, Speed(0-9)
   '''
   def setSpeed(self, speed):
       list1 = [0xfd,0x00,0x06,0x01,0x00,91,115,54,93]
-      self.read_ack(1)
-      self.read_ack(1)
+
       if(speed > 9 or speed < 0):
          return
       list1[7]= speed + 48
       self.write_cmd(list1)
-      self.wait()
   '''
     @brief Set voice type 
     @param type(MALE:male, FEMALE:famale, DONALDDUCK:Donaldduck)
@@ -151,7 +143,6 @@ class DFRobot_SpeechSynthesis(object):
         self.speak("[m54]")
       else:
         print("no that type")
-  
   '''
     @brief Set tone 
     @param tone, Tone(0-9)
@@ -161,10 +152,7 @@ class DFRobot_SpeechSynthesis(object):
       if(tone > 9 or tone < 0):
          return
       list1[7]= tone + 48
-      self.read_ack(1)
-      self.read_ack(1)
       self.write_cmd(list1)
-      self.wait()
   '''
     @brief Set how to read English 
     @param pron(ALPHABET: letter, WORD: word)
@@ -285,9 +273,6 @@ class DFRobot_SpeechSynthesis_I2C(DFRobot_SpeechSynthesis):
   def write_cmd(self, data):
         self.i2cbus.write_block_data(self.__addr,0x1,data)
         #print(data)
-        #for i in range(0,len(data)):
-         # self.i2cbus.write_byte(self.__addr,data[i])
-        #print(data)
 
   '''
     @brief read the data from the register
@@ -297,7 +282,6 @@ class DFRobot_SpeechSynthesis_I2C(DFRobot_SpeechSynthesis):
       rslt = self.i2cbus.read_byte(self.__addr)
     except:
       rslt = -1
-    #print(rslt)
     return rslt
 
 class DFRobot_SpeechSynthesis_UART(DFRobot_SpeechSynthesis): 

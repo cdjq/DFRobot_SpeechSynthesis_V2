@@ -111,6 +111,18 @@ public:
   } eNamePron_t;
   
   /**
+    Select sound type 
+  */
+  typedef enum{
+    FEMALE1,/**<Female 1, recommended>*/
+    MALE1,/**<Male 1, recommended>*/
+    MALE2,/**<Male 2>*/
+    FEMALE2,/**<FEMALE 2>*/
+    DONALDDUCK,/**<Donald Duck>*/
+    FEMALE3,/**<Female 3>*/
+  } eSoundType_t;
+
+  /**
     How to read English 
   */
   typedef enum{
@@ -170,6 +182,12 @@ public:
      @param speed Speed value (0-9)
   */
   void setSpeed(uint8_t speed);
+
+  /**
+     @brief Set sound type 
+     @param type(MALE:Male, FEMALE:Female, DONALDDUCK: Donaldduck)
+  */
+  void setSoundType(eSoundType_t type);
 
   /**
      @brief Set the tone 
@@ -237,24 +255,6 @@ public:
   void setDigitalPron(eDigitalPron_t pron);
   
   /**
-     @brief Synthesize English char string
-  */
-  void speakElish(String word);
-  
-private:
-
-
-  uint8_t *_utf8;
-  uint8_t *_unicode;
-  uint16_t uniLen = 0;
-  uint16_t _index=0;
-  uint16_t _len=0;
-  uint16_t __index = 0;
-  eState_t curState = NONE;
-  eState_t lastState = NONE;
-  bool lanChange = false;
-  bool _isFlash = false;
-  /**
      @brief Stop synthesis 
   */
   void stopSynthesis();
@@ -272,6 +272,25 @@ private:
      @brief Wait for speech synthesis to complete 
   */
   void wait();
+  
+  /**
+     @brief Synthesize English char string
+  */
+  void speakElish(String word);
+  
+private:
+
+
+  uint8_t *_utf8;
+  uint8_t *_unicode;
+  uint16_t uniLen = 0;
+  uint16_t _index=0;
+  uint16_t _len=0;
+  uint16_t __index = 0;
+  eState_t curState = NONE;
+  eState_t lastState = NONE;
+  bool lanChange = false;
+  bool _isFlash = false;
   uint16_t getWordLen();
   virtual uint8_t readACK()= 0;
   void sendPack(uint8_t cmd,uint8_t* data =NULL,uint16_t len = 0);
@@ -285,8 +304,8 @@ private:
 class DFRobot_SpeechSynthesis_I2C :public DFRobot_SpeechSynthesis{
 public:
   DFRobot_SpeechSynthesis_I2C(TwoWire *pWire = &Wire, uint8_t address = I2C_ADDR);
-  //~DFRobot_SpeechSynthesis_I2C();
-  bool begin();
+  ~DFRobot_SpeechSynthesis_I2C();
+  void begin();
 private:
   uint8_t _deviceAddr;
   TwoWire *_pWire;

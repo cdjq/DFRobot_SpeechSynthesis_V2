@@ -1,14 +1,7 @@
 # DFRobot_SpeechSynthesis_V2
 
-* [中文版](./README_CN.md)
-
 Would you like to add voice to your projects? Connect up this Speech Synthesis module, add few couples of lines of code, then here goes, your project starts speaking. Both Chinese and English are "so easy" for this speech synthesis module. It also can broadcast the current time and environment data. Combining with a speech recognition module, you can easily have conversations with your projects! The module uses I2C and UART two communication modes, gravity interface, and is compatible with most main-controllers on the market. Besides, the module already comes with a speaker, so you don't need to buy one.
-
-![正反面svg效果图](https://github.com/cdjq/DFRobot_4DIO_S/raw/master/resources/images/SEN0245svg4.png)
-
-## 产品链接（链接到英文商城）
-    SKU：产品名称
-
+   
 ## Table of Contents
 
 * [Summary](#summary)
@@ -55,6 +48,17 @@ To use this library, first download the library file, paste it into the \Arduino
   void setSpeed(uint8_t speed);
 
   /**
+   *  @brief Set voice type 
+   *  @param FEMALE1,<Female 1, recommended>
+   *         MALE1,<Male 1, recommended>
+   *         MALE2,<Male 2>
+   *         FEMALE2,<Female 2>
+   *         DONALDDUCK,<Donald Duck>
+   *         FEMALE3,<Female 3>
+   */
+  void setSoundType(eSoundType_t type);
+
+  /**
    *  @brief Set the tone 
    *  @param tone, tone value(0-9)
    */
@@ -77,23 +81,21 @@ To use this library, first download the library file, paste it into the \Arduino
 MCU                | Work Well    | Work Wrong   | Untested    | Remarks
 ------------------ | :----------: | :----------: | :---------: | -----
 Arduino Uno        |      √       |              |             | 
-FireBeetle-ESP8266        |      √       |              |             | 
-FireBeetle-ESP32        |      √       |              |             | 
-Arduino MEGA2560        |      √       |              |             | 
-Arduino Leonardo|      √       |              |             | 
-Micro:bit        |      √       |              |             | 
-FireBeetle-M0        |      √       |              |             | 
-Raspberry Pi      |      √       |              |             | 
+Mega2560        |      √       |              |             | 
+Leonardo        |      √       |              |             | 
+ESP32        |      √       |              |             | 
+micro:bit        |      √       |              |             | 
+
 
 ## History
 
-- Data 2021-8-12
+- Data 2020-11-6
 - Version V1.0
 
 
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2020.8.12 (Welcome to our [website](https://www.dfrobot.com/))
+Written by fengli(li.feng@dfrobot.com), 2020.11.6 (Welcome to our [website](https://www.dfrobot.com/))
 
 
 

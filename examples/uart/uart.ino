@@ -14,20 +14,22 @@
 SoftwareSerial ssSerial1(2, 3);  //RX, TX
 DFRobot_SpeechSynthesis_UART ss;
 
-void setup(){
-
+void setup() {
   ssSerial1.begin(115200);
+  //Init speech synthesis sensor
   ss.begin(ssSerial1);
+  
   //Set voice volume to 5
   //ss.setVolume(5);
   //Set playback speed to 5
   //ss.setSpeed(5);
+  //Set speaker to female 
+  //ss.setSoundType(ss.FEMALE1);
   //Set tone to 5
   //ss.setTone(5);
   //For English, speak word 
   //ss.setEnglishPron(ss.WORD);
 }
-
 
 void loop() {
   ss.speak(F("She sells seashells by the seashore"));
